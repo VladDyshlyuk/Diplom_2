@@ -2,6 +2,7 @@ package org.example.clients;
 
 import io.restassured.response.Response;
 import org.example.models.User;
+import org.example.models.UserCredentials;
 
 import javax.swing.plaf.PanelUI;
 
@@ -35,24 +36,6 @@ public class UserClient {
                 .post(API_AUTH_LOGIN);
     }
 
-    public Response getUserByAccessToken(String accessToken){
-        return given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(accessToken)
-                .when()
-                .post(API_AUTH_REGISTER);
-    }
-
-    public Response logout(String refreshToken){
-        return given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(refreshToken)
-                .when()
-                .post(API_AUTH_LOGOUT);
-    }
-
     public Response delete(User user){
         return given()
                 .header("Content-type", "application/json")
@@ -61,5 +44,17 @@ public class UserClient {
                 .when()
                 .delete(API_AUTH_USER);
     }
+
+    public Response update(UserCredentials userCredentials){
+        return given()
+                .header("Content-type", "application/json")
+                .header("Authorization", userCredentials.getAccessToken() )
+                .and()
+                .body(userCredentials.getUser())
+                .when()
+                .patch(API_AUTH_USER);
+    }
+
+
 
 }
