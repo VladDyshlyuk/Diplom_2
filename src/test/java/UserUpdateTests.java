@@ -43,7 +43,6 @@ public class UserUpdateTests {
     @Step("Можно отредактировать пользователя с авторизацией")
     public void editUserAuthorisedTest(){
         String newEmail = randomEmail();
-        String newPassword = randomString(10);
         String newName = randomString(10);
         user.setEmail(newEmail);
         user.setName(newName);
@@ -60,7 +59,7 @@ public class UserUpdateTests {
 
     @Test
     @Step("Нельзя отредактировать пользователя без авторизации")
-    public void unableEditUserUnauthorised(){
+    public void unableEditUserUnauthorisedTest(){
         user = randomUser();
         userCredentials.setUser(user);
         userCredentials.setAccessToken("");

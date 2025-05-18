@@ -38,7 +38,7 @@ public class UserCreationTests {
 
     @Test
     @Step("Нельзя создать существующего пользователя")
-    public void errorReturnedUserExists(){
+    public void errorReturnedUserExistsTest(){
         userClient.create(user);
         Response response = userClient.create(user);
         assertEquals(SC_FORBIDDEN, response.statusCode());
@@ -48,7 +48,7 @@ public class UserCreationTests {
 
     @Test
     @Step("Нельзя создать пользователя без имени")
-    public void errorReturnedNoName(){
+    public void errorReturnedNoNameTest(){
         User user = randomUser();
         user.setName(null);
         Response response = userClient.create(user);
@@ -59,7 +59,7 @@ public class UserCreationTests {
 
     @Test
     @Step("Нельзя создать пользователя без почты")
-    public void errorReturnedNoEmail(){
+    public void errorReturnedNoEmailTest(){
         User user = randomUser();
         user.setEmail(null);
         Response response = userClient.create(user);
@@ -70,7 +70,7 @@ public class UserCreationTests {
 
     @Test
     @Step("Нельзя создать пользователя без пароля")
-    public void errorReturnedNoPassword(){
+    public void errorReturnedNoPasswordTest(){
         User user = randomUser();
         user.setPassword(null);
         Response response = userClient.create(user);

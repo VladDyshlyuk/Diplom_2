@@ -1,4 +1,4 @@
-import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.clients.OrderClient;
@@ -44,7 +44,7 @@ public class OrderCreationTests {
     }
 
     @Test
-    @Step("Создание заказа с авторизацией")
+    @DisplayName("Создание заказа с авторизацией")
     public void authorizedOrderCreationTest(){
         Response response = orderClient.create(order, userCredentials);
         assertEquals(SC_OK, response.statusCode());
@@ -52,7 +52,7 @@ public class OrderCreationTests {
     }
 
     @Test
-    @Step("Создание заказа с авторизацией")
+    @DisplayName("Создание заказа с авторизацией")
     public void unauthorizedOrderCreationTest(){
         userCredentials.setAccessToken("");
         Response response = orderClient.create(order, userCredentials);
@@ -61,7 +61,7 @@ public class OrderCreationTests {
     }
 
     @Test
-    @Step("Создание заказа с ингредиентами")
+    @DisplayName("Создание заказа с ингредиентами")
     public void ingredientsOrderCreationTest(){
         Response response = orderClient.create(order, userCredentials);
         assertEquals(SC_OK, response.statusCode());
@@ -69,7 +69,7 @@ public class OrderCreationTests {
     }
 
     @Test
-    @Step("Нельзя создать заказ без ингредиентов")
+    @DisplayName("Нельзя создать заказ без ингредиентов")
     public void noIngredientsOrderCreationTest(){
         order.setIngredients(null);
         Response response = orderClient.create(order, userCredentials);
@@ -79,7 +79,7 @@ public class OrderCreationTests {
     }
 
     @Test
-    @Step("Нельзя создать заказ c неверным хэшем ингредиентов")
+    @DisplayName("Нельзя создать заказ c неверным хэшем ингредиентов")
     public void wrongHashOrderCreationTest(){
         String[] wrongIngredients = new String[1];
         wrongIngredients[0] = randomString(10);
