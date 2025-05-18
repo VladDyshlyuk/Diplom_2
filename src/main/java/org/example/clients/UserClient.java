@@ -4,18 +4,14 @@ import io.restassured.response.Response;
 import org.example.models.User;
 import org.example.models.UserCredentials;
 
-import javax.swing.plaf.PanelUI;
 
 import static io.restassured.RestAssured.given;
 
 public class UserClient {
 
     private static final String API_AUTH_REGISTER = "api/auth/register";
-    private static final String API_PASSWORD_RESET = "api/password-reset";
-    private static final String API_AUTH_TOKEN = "api/auth/token";
     private static final String API_AUTH_USER = "api/auth/user";
     private static final String API_AUTH_LOGIN = "api/auth/login";
-    private static final String API_AUTH_LOGOUT = "api/auth/logout";
 
     public Response create(User user){
         return given()

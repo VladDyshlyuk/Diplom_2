@@ -63,11 +63,12 @@ public class UserUpdateTests {
     public void unableEditUserUnauthorised(){
         user = randomUser();
         userCredentials.setUser(user);
-        userCredentials.setAccessToken(randomString());
+        userCredentials.setAccessToken("");
         Response response = userClient.update(userCredentials);
         assertEquals(SC_UNAUTHORIZED, response.statusCode());
         assertEquals("You should be authorised", response.jsonPath().getString("message"));
         assertFalse(response.jsonPath().getBoolean("success"));
     }
+
 
 }

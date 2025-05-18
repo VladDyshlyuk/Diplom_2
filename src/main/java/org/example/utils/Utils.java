@@ -1,6 +1,7 @@
 package org.example.utils;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
 
@@ -24,5 +25,9 @@ public class Utils {
 
     public static String randomEmail(){
         return randomString(10) + "@gmail.com";
+    }
+
+    public static Integer randomNumber(Integer min, Integer max){
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }
